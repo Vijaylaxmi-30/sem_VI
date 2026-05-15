@@ -1,0 +1,15 @@
+String toEmail = 'yourgmail@gmail.com';
+
+String subject = 'Test Email from Salesforce';
+
+String body = 'Hello, this is a console based Apex email notification.';
+
+Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+
+mail.setToAddresses(new String[] {toEmail});
+mail.setSubject(subject);
+mail.setPlainTextBody(body);
+
+Messaging.sendEmail(new Messaging.SingleEmailMessage[] {mail});
+
+System.debug('Email Sent Successfully');

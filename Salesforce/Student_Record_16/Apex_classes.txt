@@ -1,0 +1,19 @@
+public class StudentController {
+
+    public Student__c stu {get; set;}
+
+    public String message {get; set;}
+
+    public StudentController() {
+        stu = new Student__c();
+    }
+
+    public void saveStudent() {
+
+        insert stu;
+
+        message = 'Student Record Saved Successfully!';
+
+        stu = new Student__c();
+    }
+}

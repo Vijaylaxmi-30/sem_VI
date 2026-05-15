@@ -1,0 +1,32 @@
+<apex:page controller="StudentController">
+
+    <apex:form>
+
+        <apex:pageBlock title="Student Record Management System">
+
+            <apex:pageBlockSection columns="1">
+
+                <apex:inputField value="{!stu.Student_Name__c}"/>
+
+                <apex:inputField value="{!stu.Roll_Number__c}"/>
+
+                <apex:inputField value="{!stu.Class__c}"/>
+
+                <apex:inputField value="{!stu.Mobile_Number__c}"/>
+
+            </apex:pageBlockSection>
+
+            <apex:commandButton value="Save Student"
+                                action="{!saveStudent}"/>
+
+            <br/><br/>
+
+            <apex:outputText value="{!message}"
+                             style="color:green;
+                                    font-weight:bold;"/>
+
+        </apex:pageBlock>
+
+    </apex:form>
+
+</apex:page>

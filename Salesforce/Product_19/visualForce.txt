@@ -1,0 +1,32 @@
+<apex:page controller="ProductController">
+
+    <apex:form>
+
+        <apex:pageBlock title="Product Inventory Management System">
+
+            <apex:pageBlockSection columns="1">
+
+                <apex:inputField value="{!prod.Product_Name__c}"/>
+
+                <apex:inputField value="{!prod.Serial_Number__c}"/>
+
+                <apex:inputField value="{!prod.Manufacture_Date__c}"/>
+
+                <apex:inputField value="{!prod.Expiry_Date__c}"/>
+
+            </apex:pageBlockSection>
+
+            <apex:commandButton value="Save Product"
+                                action="{!saveProduct}"/>
+
+            <br/><br/>
+
+            <apex:outputText value="{!message}"
+                             style="color:green;
+                                    font-weight:bold;"/>
+
+        </apex:pageBlock>
+
+    </apex:form>
+
+</apex:page>

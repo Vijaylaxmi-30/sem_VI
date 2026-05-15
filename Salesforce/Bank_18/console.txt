@@ -1,0 +1,15 @@
+Customer__c cust = new Customer__c();
+
+cust.Customer_ID__c = 201;
+
+cust.Customer_Name__c = 'Rahul';
+
+cust.Email__c = 'rahul@gmail.com';
+
+cust.Birth_Date__c = Date.newInstance(2000, 6, 15);
+
+cust.Department__c = 'Finance';
+
+insert cust;
+
+System.debug('Customer Record Inserted Successfully');

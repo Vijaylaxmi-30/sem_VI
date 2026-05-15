@@ -1,0 +1,20 @@
+public class ProductController {
+
+    public Product__c prod {get; set;}
+
+    public String message {get; set;}
+
+    public ProductController() {
+
+        prod = new Product__c();
+    }
+
+    public void saveProduct() {
+
+        insert prod;
+
+        message = 'Product Record Saved Successfully!';
+
+        prod = new Product__c();
+    }
+}

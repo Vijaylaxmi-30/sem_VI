@@ -1,0 +1,15 @@
+Employee__c emp = new Employee__c();
+
+emp.Emp_ID__c = 101;
+
+emp.Emp_Name__c = 'Vijay';
+
+emp.Email__c = 'vijay@gmail.com';
+
+emp.Birth_Date__c = Date.newInstance(2004, 5, 10);
+
+emp.Department__c = 'IT';
+
+insert emp;
+
+System.debug('Employee Record Inserted Successfully');
