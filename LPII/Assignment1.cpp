@@ -1,163 +1,139 @@
 #include <iostream>
-#include <vector>
-#include <queue>
-#include <stack>
 using namespace std;
 
-/* -------- DFS Recursive -------- */
-void DFS_Recursive(int node, vector<vector<int>> &adj, vector<bool> &visited) {
-    visited[node] = true;
+int graph[10][10];
+int visited[10];
+int queue[10];
+
+int n;
+int front, rear;
+
+// DFS Function
+void DFS(int node)
+{
+    visited[node] = 1;
+
     cout << node << " ";
 
-    for (int next : adj[node]) {
-        if (!visited[next]) {
-            DFS_Recursive(next, adj, visited);
+    for(int i = 0; i < n; i++)
+    {
+        if(graph[node][i] == 1 && visited[i] == 0)
+        {
+            DFS(i);
         }
     }
 }
 
-/* -------- DFS Iterative -------- */
-void DFS_Iterative(int start, vector<vector<int>> &adj, int V) {
-    vector<bool> visited(V, false);
-    stack<int> st;
-    st.push(start);
+// BFS Function
+void BFS(int start)
+{
+    // Reset visited array
+    for(int i = 0; i < n; i++)
+    {
+        visited[i] = 0;
+    }
 
-    while (!st.empty()) {
-        int node = st.top();
-        st.pop();
+    front = 0;
+    rear = 0;
 
-        if (!visited[node]) {
-            visited[node] = true;
-            cout << node << " ";
+    queue[rear] = start;
+    rear++;
 
-            for (int next : adj[node]) {
-                if (!visited[next]) {
-                    st.push(next);
-                }
+    visited[start] = 1;
+
+    while(front < rear)
+    {
+        int current = queue[front];
+        front++;
+
+        cout << current << " ";
+
+        for(int i = 0; i < n; i++)
+        {
+            if(graph[current][i] == 1 && visited[i] == 0)
+            {
+                queue[rear] = i;
+                rear++;
+
+                visited[i] = 1;
             }
         }
     }
 }
 
-/* -------- BFS Iterative -------- */
-void BFS_Iterative(int start, vector<vector<int>> &adj, int V) {
-    vector<bool> visited(V, false);
-    queue<int> q;
+int main()
+{
+    int choice = 0;
+    int start;
 
-    visited[start] = true;
-    q.push(start);
+    while(choice != 4)
+    {
+        cout << "\n\n--- GRAPH MENU ---";
+        cout << "\n1. Enter Graph";
+        cout << "\n2. DFS";
+        cout << "\n3. BFS";
+        cout << "\n4. Exit";
+        cout << "\nEnter choice: ";
 
-    while (!q.empty()) {
-        int node = q.front();
-        q.pop();
-
-        cout << node << " ";
-
-        for (int next : adj[node]) {
-            if (!visited[next]) {
-                visited[next] = true;
-                q.push(next);
-            }
-        }
-    }
-}
-
-/* -------- BFS Recursive -------- */
-void BFS_Helper(queue<int> &q, vector<vector<int>> &adj, vector<bool> &visited) {
-    if (q.empty()) return;
-
-    int node = q.front();
-    q.pop();
-    cout << node << " ";
-
-    for (int next : adj[node]) {
-        if (!visited[next]) {
-            visited[next] = true;
-            q.push(next);
-        }
-    }
-
-    BFS_Helper(q, adj, visited);
-}
-
-void BFS_Recursive(int start, vector<vector<int>> &adj, int V) {
-    vector<bool> visited(V, false);
-    queue<int> q;
-
-    visited[start] = true;
-    q.push(start);
-
-    BFS_Helper(q, adj, visited);
-}
-
-/* -------- MAIN -------- */
-int main() {
-    int V, E;
-    cout << "Enter number of vertices and edges: ";
-    cin >> V >> E;
-
-    vector<vector<int>> adj(V);
-
-    cout << "Enter edges (u v):\n";
-    for (int i = 0; i < E; i++) {
-        int u, v;
-        cin >> u >> v;
-        adj[u].push_back(v);
-        adj[v].push_back(u);  // undirected graph
-    }
-
-    int choice, start;
-
-    do {
-        cout << "\n===== MENU =====\n";
-        cout << "1. DFS Recursive\n";
-        cout << "2. DFS Iterative\n";
-        cout << "3. BFS Iterative\n";
-        cout << "4. BFS Recursive\n";
-        cout << "5. Exit\n";
-        cout << "Enter choice: ";
         cin >> choice;
 
-        if (choice >= 1 && choice <= 4) {
-            cout << "Enter starting vertex: ";
-            cin >> start;
-        }
+        switch(choice)
+        {
+            case 1:
 
-        switch (choice) {
-            case 1: {
-                vector<bool> visited(V, false);
-                cout << "DFS Recursive: ";
-                DFS_Recursive(start, adj, visited);
-                cout << endl;
+                cout << "\nEnter number of vertices: ";
+                cin >> n;
+
+                cout << "\nEnter adjacency matrix:\n";
+
+                for(int i = 0; i < n; i++)
+                {
+                    for(int j = 0; j < n; j++)
+                    {
+                        cin >> graph[i][j];
+                    }
+                }
+
                 break;
-            }
+
             case 2:
-                cout << "DFS Iterative: ";
-                DFS_Iterative(start, adj, V);
-                cout << endl;
+
+                // Reset visited array
+                for(int i = 0; i < n; i++)
+                {
+                    visited[i] = 0;
+                }
+
+                cout << "\nEnter starting vertex: ";
+                cin >> start;
+
+                cout << "\nDFS Traversal: ";
+
+                DFS(start);
+
                 break;
 
             case 3:
-                cout << "BFS Iterative: ";
-                BFS_Iterative(start, adj, V);
-                cout << endl;
+
+                cout << "\nEnter starting vertex: ";
+                cin >> start;
+
+                cout << "\nBFS Traversal: ";
+
+                BFS(start);
+
                 break;
 
             case 4:
-                cout << "BFS Recursive: ";
-                BFS_Recursive(start, adj, V);
-                cout << endl;
-                break;
 
-            case 5:
-                cout << "Exiting...\n";
+                cout << "\nProgram Ended!";
                 break;
 
             default:
-                cout << "Invalid choice!\n";
-        }
 
-    } while (choice != 5);
+                cout << "\nInvalid Choice!";
+        }
+    }
 
     return 0;
 }
