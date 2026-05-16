@@ -23,6 +23,7 @@ This repository is designed to help students and educators understand and implem
 3. Use this repository as a reference for learning, teaching, or preparing for exams and lab submissions.
 
 ## Author
+- Vijay Laxmi
 - Computer Engineering, Semester 6
 - Laboratory Practice II (LP2)
 
