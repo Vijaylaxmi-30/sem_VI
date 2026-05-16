@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hospital Helpdesk Chatbot</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            display:flex;
+            justify-content:center;
+            margin-top:50px;
+        }
+
+        .chat{
+            width:350px;
+            border:2px solid black;
+            padding:15px;
+            border-radius:10px;
+        }
+
+        #chatbox{
+            height:250px;
+            border:1px solid gray;
+            overflow:auto;
+            padding:10px;
+            margin-bottom:10px;
+        }
+
+        input{
+            width:70%;
+            padding:5px;
+        }
+
+        button{
+            width:25%;
+            padding:5px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="chat">
+
+    <h2>Hospital Helpdesk Chatbot</h2>
+
+    <div id="chatbox"></div>
+
+    <input type="text" id="userInput" placeholder="Ask something...">
+
+    <button onclick="sendMessage()">Send</button>
+
+</div>
+
+<script>
+
+function sendMessage(){
+
+    let input = document.getElementById("userInput");
+
+    let msg = input.value.toLowerCase();
+
+    let chatbox = document.getElementById("chatbox");
+
+    chatbox.innerHTML += "<p><b>You:</b> " + msg + "</p>";
+
+    let reply = "Sorry, I don't understand.";
+
+    // Rule Based Expert System
+
+    if(msg == "hello"){
+        reply = "Hello! Welcome to City Hospital.";
+    }
+
+    else if(msg == "doctor"){
+        reply = "Doctors are available from 10 AM to 5 PM.";
+    }
+
+    else if(msg == "appointment"){
+        reply = "You can book appointment at reception.";
+    }
+
+    else if(msg == "emergency"){
+        reply = "Emergency ward is open 24 hours.";
+    }
+
+    else if(msg == "fees"){
+        reply = "Consultation fees start from 500 rupees.";
+    }
+
+    else if(msg == "bye"){
+        reply = "Thank you! Get well soon.";
+    }
+
+    chatbox.innerHTML += "<p><b>Bot:</b> " + reply + "</p>";
+
+    input.value = "";
+
+    chatbox.scrollTop = chatbox.scrollHeight;
+}
+
+</script>
+
+</body>
+</html>
