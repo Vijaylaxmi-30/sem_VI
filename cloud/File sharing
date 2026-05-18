@@ -1,0 +1,156 @@
+#static
+STEP 1 — VERIFY PUBLIC IP
+
+Inside Azure VM page check:
+
+Public IP Address
+
+Make sure you are opening:
+
+http://YOUR_PUBLIC_IP
+
+NOT:
+
+https://
+
+Use only:
+
+http
+STEP 2 — CHECK PORT 80
+
+VERY IMPORTANT.
+
+Go to:
+
+VM → Networking
+
+Check:
+
+Inbound Port Rules
+
+You should see:
+
+Port	Status
+22	Allow
+80	Allow
+IF PORT 80 NOT PRESENT
+
+Click:
+
+Add inbound port rule
+
+Fill:
+
+Field	Value
+Destination Port	80
+Protocol	TCP
+Action	Allow
+
+Click:
+
+Add
+
+Wait 1 minute.
+
+Then refresh browser.
+
+STEP 3 — TEST APACHE INSIDE VM
+
+In terminal run:
+
+curl localhost
+EXPECTED OUTPUT
+
+You should see HTML content or Apache page.
+
+If yes:
+
+Apache working correctly ✅
+STEP 4 — CHECK APACHE AGAIN
+
+Run:
+
+sudo systemctl status apache2
+
+Must show:
+
+active (running)
+STEP 5 — CHECK FIREWALL
+
+Run:
+
+sudo ufw status
+
+If firewall active:
+allow HTTP:
+
+sudo ufw allow 80
+STEP 6 — RESTART APACHE
+
+Run:
+
+sudo systemctl restart apache2
+STEP 7 — OPEN WEBSITE AGAIN
+
+Browser:
+
+http://20.193.152.158
+
+
+
+echo Hello Secure File Sharing > test.txt
+dir
+STEP 5 — CONNECT TO VM USING SSH
+
+Run:
+
+ssh vijay@ip
+STEP 6 — KEEP SSH WINDOW OPEN
+
+Do NOT close it.
+
+STEP 7 — OPEN NEW CMD WINDOW
+
+Open another Command Prompt.
+
+STEP 8 — TRANSFER FILE USING SCP
+
+Run:
+
+scp test.txt vijay@ip:/home/vijay
+STEP 9 — ENTER PASSWORD
+
+Type VM password.
+
+(Password invisible → normal)
+
+EXPECTED OUTPUT
+
+You’ll see something like:
+
+test.txt       100%
+
+This means transfer successful ✅
+STEP 10 — VERIFY INSIDE VM
+
+Go back to SSH terminal.
+
+Run:
+
+ls
+
+You should see:
+
+test.txt
+
+DONE ✅
+
+STEP 11 — VIEW FILE CONTENT
+
+Run:
+
+cat test.txt
+
+Output:
+
+Hello Secure File Sharing
