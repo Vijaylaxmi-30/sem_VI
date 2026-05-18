@@ -94,7 +94,7 @@ STEP 7 — OPEN WEBSITE AGAIN
 
 Browser:
 
-http://20.193.152.158
+http://ip
 
 
 
@@ -146,6 +146,162 @@ test.txt
 DONE ✅
 
 STEP 11 — VIEW FILE CONTENT
+
+### Fullstack
+STEP 2 — START EXISTING VM
+
+Go to:
+
+Virtual Machines
+
+Select your VM.
+
+Click:
+
+Start
+
+Wait until:
+
+Running
+STEP 3 — COPY PUBLIC IP
+
+Inside VM page:
+Copy:
+
+Public IP
+
+Example:
+
+20.193.145.146
+STEP 4 — OPEN CMD
+
+On Windows:
+Open:
+
+Command Prompt
+STEP 5 — CONNECT USING SSH
+
+Run:
+
+ssh vijay@20.193.145.146
+
+Enter password.
+
+STEP 6 — UPDATE SYSTEM
+
+Run:
+
+sudo apt update
+STEP 7 — INSTALL APACHE
+
+Run:
+
+sudo apt install apache2 -y
+STEP 8 — START APACHE
+
+Run:
+
+sudo systemctl start apache2
+STEP 9 — ENABLE APACHE
+
+Run:
+
+sudo systemctl enable apache2
+STEP 10 — CHECK APACHE STATUS
+
+Run:
+
+sudo systemctl status apache2
+
+Check:
+
+active (running)
+
+Press:
+
+q
+
+to exit.
+
+STEP 11 — INSTALL GIT
+
+Run:
+
+sudo apt install git -y
+STEP 12 — GO TO HOME DIRECTORY
+
+Run:
+
+cd ~
+STEP 13 — CLONE GITHUB PROJECT
+
+Run:
+
+git clone https://github.com/Vijaylaxmi-30/Helpdesk-Management--Expert-System-.git
+STEP 14 — CHECK PROJECT
+
+Run:
+
+ls
+
+You should see:
+
+Helpdesk-Management--Expert-System-
+STEP 15 — GO INSIDE PROJECT
+
+Run:
+
+cd Helpdesk-Management--Expert-System-
+STEP 16 — VERIFY FILES
+
+Run:
+
+ls
+
+Check:
+
+index.html
+
+exists.
+
+VERY IMPORTANT.
+
+STEP 17 — REMOVE OLD WEBSITE FILES
+
+Run:
+
+sudo rm -rf /var/www/html/*
+STEP 18 — COPY PROJECT FILES
+
+Run:
+
+sudo cp -r * /var/www/html/
+STEP 19 — RESTART APACHE
+
+Run:
+
+sudo systemctl restart apache2
+STEP 20 — OPEN WEBSITE
+
+Browser:
+
+http://20.193.145.146
+
+Your GitHub project opens ✅
+
+STEP 21 — STOP VM AFTER PRACTICAL
+
+VERY IMPORTANT.
+
+Azure Portal:
+
+VM → Stop
+
+Wait for:
+
+Stopped (deallocated)
+
+To save credits.
 
 Run:
 
